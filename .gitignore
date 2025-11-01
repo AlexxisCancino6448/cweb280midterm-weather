@@ -1,0 +1,9 @@
+﻿# Node
+node_modules/
+.env
+data/
+*.sqlite
+.DS_Store
+
+# Editor
+.vscode/
