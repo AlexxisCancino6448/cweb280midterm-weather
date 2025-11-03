@@ -1,6 +1,5 @@
 // tests for weather snapshot flow. mocks axios to avoid real HTTP calls
 // demonstrates that fetch endpoint stores a snapshot and returns mapped data
-
 const request = require('supertest');
 const app = require('../app');
 const { knex } = require('../db');
@@ -17,7 +16,7 @@ afterAll(async () => {
 });
 
 test('GET /api/weather stores snapshot and returns mapped data', async () => {
-  // mock Weatherstack response shape
+  // example Weatherstack response shape
   axios.get.mockResolvedValue({
     data: {
       request: { query: 'Regina' },
@@ -32,7 +31,7 @@ test('GET /api/weather stores snapshot and returns mapped data', async () => {
     }
   });
 
-  const res = await request(app).get('/api/weather').query({ query: 'Regina', units: 'm' });
+  const res = await request(app).get('/api/weather').query({ query: 'Regina', units: 'c' });
   expect(res.statusCode).toBe(200);
   expect(res.body.success).toBe(true);
   expect(res.body.data.saved).toBeDefined();

@@ -4,8 +4,7 @@ const app = require('../app');
 const { knex } = require('../db');
 
 beforeAll(async () => {
-  // ensure schema in memory DB
-  await require('../migrations/ensureSchema');
+  await require('../migrations/ensureSchema'); // returns the migration Promise
 });
 
 afterAll(async () => {
@@ -15,19 +14,19 @@ afterAll(async () => {
 describe('Auth', () => {
   test('register -> success', async () => {
     const res = await request(app).post('/api/auth/register').send({
-      username: 'alice',
-      email: 'alice@example.com',
+      username: 'alex',
+      email: 'alex@example.com',
       password: 'password123'
     });
     expect(res.statusCode).toBe(201);
     expect(res.body.success).toBe(true);
-    expect(res.body.data.user.email).toBe('alice@example.com');
+    expect(res.body.data.user.email).toBe('alex@example.com');
     expect(res.body.data.token).toBeTruthy();
   });
 
   test('login -> success', async () => {
     const res = await request(app).post('/api/auth/login').send({
-      email: 'alice@example.com',
+      email: 'alex@example.com',
       password: 'password123'
     });
     expect(res.statusCode).toBe(200);

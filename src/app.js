@@ -1,5 +1,4 @@
 // express app bootstrap: global middleware, routes mounting, centralized error handler
-// rubric uses helmet, cors and express.json for security and parsing
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -25,7 +24,7 @@ app.use('/api', routes);
 // 404 handler returns JSON
 app.use((req, res) => res.status(404).json({ error: 'Not Found' }));
 
-// centralized error handling to keep controllers thin and consistent
+// centralized error handling to keep controllers simple and consistent
 app.use(errorHandler);
 
 module.exports = app;

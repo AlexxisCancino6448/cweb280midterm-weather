@@ -1,4 +1,4 @@
-// bootstraps server using config kept tiny to support tests that import app without starting server
+// bootstraps server using config kept small to support tests that import app without starting server
 const app = require('./app');
 const config = require('./config');
 

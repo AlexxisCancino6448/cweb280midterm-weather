@@ -14,7 +14,7 @@ async function create(payload) {
 }
 
 async function update(id, updates) {
-  if (updates.units && !['m', 'f', 's'].includes(updates.units)) {
+  if (updates.units && !['c', 'f', 's'].includes(updates.units)) {
     const err = new Error('Invalid units');
     err.status = 422;
     throw err;

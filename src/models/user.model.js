@@ -1,10 +1,10 @@
-// thin data access layer for users table. keeps SQL centralized 
+// simple data access layer for users table. keeps SQL centralized 
 const { knex } = require('../db');
 const { v4: uuidv4 } = require('uuid');
 
 const TABLE = 'users';
 
-async function create({ username, email, passwordHash, defaultLocation = null, units = 'm' }) {
+async function create({ username, email, passwordHash, defaultLocation = null, units = 'c' }) {
   const id = uuidv4();
   await knex(TABLE).insert({
     id,
@@ -50,3 +50,4 @@ async function remove(id) {
 }
 
 module.exports = { create, findById, findByEmail, update, remove };
+ 

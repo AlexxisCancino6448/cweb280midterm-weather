@@ -1,6 +1,4 @@
 // basic user profile tests. uses in memory DB if tests set DATABASE_FILENAME=':memory:'
-// Ensure migrations are run in test setup.
-
 const request = require('supertest');
 const app = require('../app');
 const { knex } = require('../db');
@@ -25,6 +23,7 @@ beforeAll(async () => {
   token = res.body.data.token;
 });
 
+
 afterAll(async () => {
   await knex.destroy();
 });
@@ -40,8 +39,8 @@ test('PUT /api/users/me updates allowed fields', async () => {
   const res = await request(app)
     .put('/api/users/me')
     .set('Authorization', `Bearer ${token}`)
-    .send({ username: 'alex', units: 'f' });
+    .send({ username: 'alex', units: 'c' });
   expect(res.statusCode).toBe(200);
   expect(res.body.data.username).toBe('alex');
-  expect(res.body.data.units).toBe('f');
+  expect(res.body.data.units).toBe('c');
 });

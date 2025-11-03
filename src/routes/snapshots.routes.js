@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get(
   '/',
-  [query('query').isString().notEmpty().withMessage('query is required'), query('units').optional().isIn(['m', 'f', 's']).withMessage('invalid units')],
+  [query('query').isString().notEmpty().withMessage('query is required'), query('units').optional().isIn(['c', 'f', 's']).withMessage('invalid units')],
   validate,
   snapshotsController.fetchCurrentWeather
 );

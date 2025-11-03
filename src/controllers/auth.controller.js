@@ -1,4 +1,4 @@
-// controllers remain thin so they validate the request, call the service, and then respond. the errors are forwarded to the error handler
+// controllers remain simple so they validate the request, call the service, and then respond. the errors are forwarded to the error handler
 const authService = require('../services/auth.service');
 
 exports.register = async (req, res, next) => {

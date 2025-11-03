@@ -11,17 +11,18 @@ beforeAll(async () => {
   await require('../migrations/ensureSchema');
 
   await request(app).post('/api/auth/register').send({
-    username: 'carol',
-    email: 'carol@example.com',
+    username: 'alice',
+    email: 'alice@example.com',
     password: 'password123'
   });
 
   const res = await request(app).post('/api/auth/login').send({
-    email: 'carol@example.com',
+    email: 'alice@example.com',
     password: 'password123'
   });
   token = res.body.data.token;
 });
+
 
 afterAll(async () => {
   await knex.destroy();

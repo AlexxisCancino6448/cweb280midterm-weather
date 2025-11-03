@@ -11,7 +11,7 @@ async function createSchema() {
       t.string('email').notNullable().unique();
       t.string('password_hash').notNullable();
       t.string('default_location');
-      t.string('units').notNullable().defaultTo('m');
+      t.string('units').notNullable().defaultTo('c');
       t.timestamp('created_at').defaultTo(knex.fn.now());
     });
     console.log('Created table: users');
@@ -29,7 +29,7 @@ async function createSchema() {
       t.timestamp('created_at').defaultTo(knex.fn.now());
       t.foreign('user_id').references('id').inTable('users').onDelete('CASCADE');
     });
-    console.log('created table: saved_locations');
+    console.log('Created table: saved_locations');
   }
 
   // weather_snapshots
@@ -46,14 +46,13 @@ async function createSchema() {
       t.integer('visibility');
       t.text('raw_json');
     });
-    console.log('created table: weather_snapshots');
+    console.log('Created table: weather_snapshots');
   }
 }
 
-createSchema()
+const ensurePromise = createSchema()
   .then(() => {
     console.log('schema ensured. DB file:', dbFile || '(memory)');
-    // keep connection open for in memory or worker local test DB files so the schema persists
     const isTransient =
       !dbFile ||
       dbFile === ':memory:' ||
@@ -63,11 +62,12 @@ createSchema()
       console.log('transient DB detected, keeping migration connection open for this process.');
       return;
     }
-    // for persistent DB files destroy the migration knex to avoid resources being leaked.
     return knex.destroy();
   })
   .catch((err) => {
-    // log and rethrow so the caller can handle the failure.
     console.error('failed to ensure schema:', err);
     throw err;
   });
+
+// export the promise so callers can await it
+module.exports = ensurePromise;
