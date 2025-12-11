@@ -31,7 +31,7 @@ test('GET /api/weather stores snapshot and returns mapped data', async () => {
     }
   });
 
-  const res = await request(app).get('/api/weather').query({ query: 'Regina', units: 'c' });
+  const res = await request(app).get('/api/weather').query({ query: 'Regina', units: 'm' });
   expect(res.statusCode).toBe(200);
   expect(res.body.success).toBe(true);
   expect(res.body.data.saved).toBeDefined();

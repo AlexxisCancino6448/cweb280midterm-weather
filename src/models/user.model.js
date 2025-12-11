@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const TABLE = 'users';
 
-async function create({ username, email, passwordHash, defaultLocation = null, units = 'c' }) {
+async function create({ username, email, passwordHash, defaultLocation = null, units = 'm' }) {
   const id = uuidv4();
   await knex(TABLE).insert({
     id,

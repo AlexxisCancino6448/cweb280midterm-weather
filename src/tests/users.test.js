@@ -39,8 +39,8 @@ test('PUT /api/users/me updates allowed fields', async () => {
   const res = await request(app)
     .put('/api/users/me')
     .set('Authorization', `Bearer ${token}`)
-    .send({ username: 'alex', units: 'c' });
+    .send({ username: 'alex', units: 'm' });
   expect(res.statusCode).toBe(200);
   expect(res.body.data.username).toBe('alex');
-  expect(res.body.data.units).toBe('c');
+  expect(res.body.data.units).toBe('m');
 });

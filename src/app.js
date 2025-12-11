@@ -1,4 +1,6 @@
 // express app bootstrap: global middleware, routes mounting, centralized error handler
+require('dotenv').config();
+console.log('WEATHER_API_KEY present:', !!process.env.WEATHERSTACK_KEY);
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');

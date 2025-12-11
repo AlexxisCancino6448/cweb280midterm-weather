@@ -15,7 +15,7 @@ async function seed() {
       email: 'seed@example.com',
       password_hash: passwordHash,
       default_location: 'Regina, SK',
-      units: 'c'
+      units: 'm'
     });
 
     await knex('saved_locations').insert({

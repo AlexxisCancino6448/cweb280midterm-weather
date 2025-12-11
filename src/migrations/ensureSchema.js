@@ -11,7 +11,7 @@ async function createSchema() {
       t.string('email').notNullable().unique();
       t.string('password_hash').notNullable();
       t.string('default_location');
-      t.string('units').notNullable().defaultTo('c');
+      t.string('units').notNullable().defaultTo('m');
       t.timestamp('created_at').defaultTo(knex.fn.now());
     });
     console.log('Created table: users');

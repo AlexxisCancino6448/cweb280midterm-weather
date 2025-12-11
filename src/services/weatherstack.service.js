@@ -3,7 +3,7 @@ const axios = require('axios');
 const config = require('../config');
 const snapshotModel = require('../models/weatherSnapshot.model');
 
-async function fetchAndSaveSnapshot({ query, units = 'c', requestedBy = null }) {
+async function fetchAndSaveSnapshot({ query, units = 'm', requestedBy = null }) {
   if (!query) {
     const err = new Error('Missing query');
     err.status = 422;
